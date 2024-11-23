@@ -1,28 +1,92 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MAUIApp_7Formulaire.MainPage">
+             x:Class="MAUIApp_7Formulaire.MainPage"
+             Title="Convertisseur">
 
     <ScrollView>
         <VerticalStackLayout
             Padding="30,0"
-            Spacing="25">
+            Spacing="25"> <!--espacement entre les lignes et marge-->
+
             <Image
                 Source="mainpage.png"
                 HeightRequest="185"
                 Aspect="AspectFit"
                 SemanticProperties.Description="dot net bot in a race car number eight" />
 
+                <!--Titre en bas de l'image-->
             <Label
-                Text="Hello, World!"
+                Text="Bienvenue au EasyConverter"
+                FontSize="30"
+                FontAttributes="Bold"
                 Style="{StaticResource Headline}"
-                SemanticProperties.HeadingLevel="Level1" />
-
+                SemanticProperties.HeadingLevel="Level1"
+                Margin=" 0,20,0,10"/>
+            <!--Description-->
             <Label
-                Text="Welcome to &#10;.NET Multi-platform App UI"
+                Text="Convertion en degré Celsius et Fahrenheit"
+                FontSize="20"
                 Style="{StaticResource SubHeadline}"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I" />
+                SemanticProperties.HeadingLevel="Level2"/>
+
+            <!--Grid pour les entrées et les boutons-->
+            <Grid ColumnSpacing="10" RowSpacing="10">
+                <!--Definir les colonnes-->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+
+                <!--Definir les Lignes-->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <!--Premiere ligne:°C vers °F-->
+                <Entry Placeholder="Tapez °C"
+                       x:Name="CelsiusEntry"
+                       Grid.Row="0"
+                       Grid.Column="0"
+                       Keyboard="Numeric"
+                       />
+
+                <ImageButton Source="arrow.png"
+                             Grid.Row="0"
+                             Grid.Column="1"
+                             Clicked="CelsiusToFah" />
+                <Label x:Name="FahrenheitResult"
+                       Text="°F"
+                       FontSize="18"
+                       Grid.Row="0"
+                       Grid.Column="2"
+                       HorizontalOptions="Center"
+                       VerticalTextAlignment="Center"/>
+
+
+                <!--Deuxieme ligne:°F vers °c-->
+                <Entry Placeholder="Tapez °F"
+                       x:Name="FahrenheitEntry"
+                       Grid.Row="1"
+                       Grid.Column="0"
+                       Keyboard="Numeric"
+                       />
+                <ImageButton Source="arrow.png"
+                             Grid.Row="1"
+                             Grid.Column="1"
+                             Clicked="FahrenheitToCelsius"/>
+                <Label x:Name="CelsiusResult"
+                       Text="°C"
+                       FontSize="18"
+                       Grid.Row="1"
+                       Grid.Column="2"
+                       VerticalTextAlignment="Center"
+                       HorizontalOptions="Center"/>
+
+
+            </Grid>
 
             <Button
                 x:Name="CounterBtn"
